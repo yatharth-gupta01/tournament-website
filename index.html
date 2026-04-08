@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Battle Royale Tournament</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="toast-container"></div>
+
+    <header class="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <span class="text-neon-red">FF</span>CLASH
+            </div>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+            <nav class="nav-links" id="nav-links">
+                <a href="#home" class="nav-link active" data-target="home">Home</a>
+                <a href="#register" class="nav-link" data-target="register">Register</a>
+                <a href="#admin" class="nav-link" data-target="admin">Admin</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="app-container">
+        <!-- HOME SECTION -->
+        <section id="home-section" class="view active">
+            <div class="hero-banner">
+                <div class="hero-content">
+                    <h2 class="subtitle">Ultimate Showdown</h2>
+                    <h1 class="title">FREE FIRE <span class="text-neon-orange">TOURNAMENT</span></h1>
+                    <div class="stats-row">
+                        <div class="stat-box">
+                            <span class="stat-label">Prize Pool</span>
+                            <span class="stat-value">₹10,000</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-label">Entry Fee</span>
+                            <span class="stat-value">₹50</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-label">Format</span>
+                            <span class="stat-value">Squad</span>
+                        </div>
+                    </div>
+                    <div class="countdown-container">
+                        <h3>Match Starts In</h3>
+                        <div id="countdown" class="countdown">
+                            <div class="cd-item"><span id="days">00</span><small>DAYS</small></div>
+                            <div class="cd-item"><span id="hours">00</span><small>HRS</small></div>
+                            <div class="cd-item"><span id="minutes">00</span><small>MIN</small></div>
+                            <div class="cd-item"><span id="seconds">00</span><small>SEC</small></div>
+                        </div>
+                    </div>
+
+                    <div class="slots-info">
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="slots-bar" style="width: 20%;"></div>
+                        </div>
+                        <p><span class="text-neon-orange" id="slots-count">20</span> / 100 Slots Registered</p>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="app.navigate('register')">REGISTER NOW</button>
+                </div>
+            </div>
+
+            <div class="rules-section">
+                <h2>Tournament <span class="text-neon-red">Rules</span></h2>
+                <div class="rules-grid">
+                    <div class="rule-card">
+                        <div class="rule-icon">🛡️</div>
+                        <h3>No Emulators</h3>
+                        <p>Only mobile players are allowed. Emulators will be immediately disqualified.</p>
+                    </div>
+                    <div class="rule-card">
+                        <div class="rule-icon">⏰</div>
+                        <h3>Timing</h3>
+                        <p>Room ID and Password will be shared 15 minutes before the match time in WhatsApp.</p>
+                    </div>
+                    <div class="rule-card">
+                        <div class="rule-icon">🚫</div>
+                        <h3>No Hacks</h3>
+                        <p>Any use of scripts, hacks or modifying config files will result in a permanent ban.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REGISTRATION SECTION -->
+        <section id="register-section" class="view">
+            <div class="page-header">
+                <h2>Squad <span class="text-neon-orange">Registration</span></h2>
+                <p>Secure your slot before it's too late</p>
+            </div>
+
+            <div class="registration-container">
+                <div class="form-wrapper">
+                    <form id="registration-form">
+                        <div class="form-group">
+                            <label for="teamName">Team Name</label>
+                            <input type="text" id="teamName" required placeholder="Enter team name">
+                        </div>
+                        <div class="form-group">
+                            <label for="playerName">Captain In-Game Name</label>
+                            <input type="text" id="playerName" required placeholder="Captain IGN">
+                        </div>
+                        <div class="form-group">
+                            <label for="uid">Free Fire UID (Captain)</label>
+                            <input type="number" id="uid" required placeholder="e.g. 1234567890" minlength="6">
+                            <small class="error-msg" id="uid-error"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">WhatsApp Number</label>
+                            <input type="tel" id="phone" required placeholder="10-digit mobile number"
+                                pattern="[0-9]{10}">
+                            <small class="error-msg" id="phone-error"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="optional">(Optional)</span></label>
+                            <input type="email" id="email" placeholder="example@gmail.com">
+                        </div>
+
+                        <div class="payment-section">
+                            <h3>Payment Details</h3>
+                            <div class="qr-container">
+                                <div class="qr-placeholder">
+                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=dummy@upi&pn=Tournament&cu=INR&am=50"
+                                        alt="UPI QR Code" />
+                                </div>
+                                <div class="upi-details">
+                                    <p>Scan to Pay <strong>₹50</strong></p>
+                                    <p class="upi-id">UPI ID: <span class="text-neon-orange">tournament@upi</span></p>
+                                    <div class="payment-instructions">
+                                        <p>1. Pay entry fee using GPay/PhonePe/Paytm.</p>
+                                        <p>2. Upload successful payment screenshot below.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="screenshot">Payment Screenshot</label>
+                                <input type="file" id="screenshot" accept="image/*" required>
+                                <div id="file-preview" class="file-preview"></div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block" id="submit-btn" style="width: 100%;">
+                            <span class="btn-text">Submit Registration</span>
+                            <span class="loader" style="display: none;"></span>
+                        </button>
+                    </form>
+
+                    <div id="success-state" class="success-state" style="display: none;">
+                        <svg class="success-icon" width="64" height="64" viewBox="0 0 24 24" fill="none"
+                            stroke="#22c55e" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        <h3>Registration Successful!</h3>
+                        <p>Your slot has been reserved. Join our WhatsApp group for Room ID and updates.</p>
+                        <a href="https://chat.whatsapp.com/dummy" target="_blank" class="btn btn-whatsapp">
+                            Join WhatsApp Group
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADMIN SECTION -->
+        <section id="admin-section" class="view">
+            <div class="page-header">
+                <h2>Admin <span class="text-neon-red">Dashboard</span></h2>
+                <p>Manage registrations and verify payments</p>
+            </div>
+
+            <div class="admin-controls">
+                <input type="text" id="search-input" class="search-box" placeholder="Search Team, Player or UID...">
+                <select id="filter-status" class="filter-box">
+                    <option value="all">All Registrations</option>
+                    <option value="verified">Verified</option>
+                    <option value="pending">Pending</option>
+                </select>
+            </div>
+
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Team Name</th>
+                            <th>Player (UID)</th>
+                            <th>Contact</th>
+                            <th>Payment</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-table-body">
+                        <!-- Rows populated by JS -->
+                    </tbody>
+                </table>
+                <div id="no-data-msg" class="no-data" style="display:none;">No registrations found.</div>
+            </div>
+
+            <!-- Screenshot Modal -->
+            <div id="image-modal" class="modal">
+                <span class="close-modal">&times;</span>
+                <img class="modal-content" id="modal-img">
+            </div>
+        </section>
+    </main>
+
+    <!-- Firebase Compat Libraries for local file execution -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-storage-compat.js"></script>
+
+    <!-- App Logic -->
+    <script src="app.js"></script>
+</body>
+
+</html>
